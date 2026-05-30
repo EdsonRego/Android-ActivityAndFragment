@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var buttonAbrir: Button
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i("ciclo_vida", "onCreate")
@@ -29,6 +28,14 @@ class MainActivity : AppCompatActivity() {
         buttonAbrir.setOnClickListener {
             //finish()
             val intent = Intent(this, DetalhesActivity::class.java)
+
+            //Passar parâmetros para a nova tela
+            intent.putExtra("filme", "The Witcher")
+            intent.putExtra("classificacao", 5)
+            intent.putExtra("avaliacao", 9.2)
+
+
+            //Inicia uma nova tela
             startActivity(intent)
         }
     }
