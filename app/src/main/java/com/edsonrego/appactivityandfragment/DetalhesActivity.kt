@@ -1,5 +1,6 @@
 package com.edsonrego.appactivityandfragment
 
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -35,9 +36,15 @@ class DetalhesActivity : AppCompatActivity() {
 //            val resultado = "filme: $filme - Classeficacao: $classificacao - Avaliacao: $avaliacao"
 //            textFilme.text = resultado
 
-            val filme = bundle.getSerializable("filme") as Filme //converte de serializable para Filme
+//            val filme = bundle.getSerializable("filme") as Filme //converte de serializable para Filme
 
-            val resultado = "filme: ${filme.nome} - Classeficacao: ${filme.descricao} - Avaliacao: ${filme.avaliacao}"
+            val filme = if(Build.VERSION.SDK_INT >= 33){
+                bundle.getSerializable("filme", Filme::class.java)
+            }else{
+                bundle.getSerializable("filme") as Filme //converte de serializable para Filme
+            }
+
+            val resultado = "filme: ${filme?.nome} - Classeficacao: ${filme?.descricao} - Avaliacao: ${filme?.avaliacao}"
             textFilme.text = resultado
         }
         buttonFechar.setOnClickListener {
