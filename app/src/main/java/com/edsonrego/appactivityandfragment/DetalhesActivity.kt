@@ -28,12 +28,16 @@ class DetalhesActivity : AppCompatActivity() {
 
         val bundle = intent.extras //todos os parametros passados
         if(bundle != null) {
-            val filme = bundle.getString("filme")
-            val classificacao = bundle.getInt("classificacao")
-            val avaliacao = bundle.getDouble("avaliacao")
 
-            val resultado = "filme: $filme - Classeficacao: $classificacao - Avaliacao: $avaliacao"
+//            val filme = bundle.getString("filme")
+//            val classificacao = bundle.getInt("classificacao")
+//            val avaliacao = bundle.getDouble("avaliacao")
+//            val resultado = "filme: $filme - Classeficacao: $classificacao - Avaliacao: $avaliacao"
+//            textFilme.text = resultado
 
+            val filme = bundle.getSerializable("filme") as Filme //converte de serializable para Filme
+
+            val resultado = "filme: ${filme.nome} - Classeficacao: ${filme.descricao} - Avaliacao: ${filme.avaliacao}"
             textFilme.text = resultado
         }
         buttonFechar.setOnClickListener {
