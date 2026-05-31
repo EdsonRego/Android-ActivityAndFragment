@@ -38,10 +38,10 @@ class DetalhesActivity : AppCompatActivity() {
 
 //            val filme = bundle.getSerializable("filme") as Filme
 
-            val filme = if(Build.VERSION.SDK_INT >= 33){
-                bundle.getSerializable("filme", Filme::class.java)
-            }else{
-                bundle.getSerializable("filme") as Filme
+            val filme = if (Build.VERSION.SDK_INT >= 33) {
+                bundle.getParcelable("filme", Filme::class.java)
+            } else {
+                bundle.getParcelable("filme") as? Filme
             }
 
             textFilme.text = "filme: ${filme?.nome} - Classeficacao: ${filme?.descricao} - Avaliacao: ${filme?.avaliacao}"
