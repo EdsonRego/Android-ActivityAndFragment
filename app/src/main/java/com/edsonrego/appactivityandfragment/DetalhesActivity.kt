@@ -36,16 +36,16 @@ class DetalhesActivity : AppCompatActivity() {
 //            val resultado = "filme: $filme - Classeficacao: $classificacao - Avaliacao: $avaliacao"
 //            textFilme.text = resultado
 
-//            val filme = bundle.getSerializable("filme") as Filme //converte de serializable para Filme
+//            val filme = bundle.getSerializable("filme") as Filme
 
             val filme = if(Build.VERSION.SDK_INT >= 33){
                 bundle.getSerializable("filme", Filme::class.java)
             }else{
-                bundle.getSerializable("filme") as Filme //converte de serializable para Filme
+                bundle.getSerializable("filme") as Filme
             }
 
-            val resultado = "filme: ${filme?.nome} - Classeficacao: ${filme?.descricao} - Avaliacao: ${filme?.avaliacao}"
-            textFilme.text = resultado
+            textFilme.text = "filme: ${filme?.nome} - Classeficacao: ${filme?.descricao} - Avaliacao: ${filme?.avaliacao}"
+
         }
         buttonFechar.setOnClickListener {
             finish()
