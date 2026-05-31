@@ -38,7 +38,7 @@ class DetalhesActivity : AppCompatActivity() {
 
 //            val filme = bundle.getSerializable("filme") as Filme
 
-            val filme = if (Build.VERSION.SDK_INT >= 33) {
+            val filme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 bundle.getParcelable("filme", Filme::class.java)
             } else {
                 bundle.getParcelable("filme") as? Filme
